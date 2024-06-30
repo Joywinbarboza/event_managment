@@ -1,6 +1,7 @@
 import React from "react";
 import WaveComponent from "../../components/LandingWave";
 import { FaFacebook, FaInstagram, FaTwitter, FaShareAlt } from "react-icons/fa";
+import Wave from "react-wavify";
 
 const Home: React.FC = () => {
   return (
@@ -66,7 +67,32 @@ const Home: React.FC = () => {
         </span>
       </div>
 
-      <WaveComponent />
+      {/* <WaveComponent /> */}
+
+      <Wave
+        fill="#f799c2"
+        paused={false}
+        style={{ display: "flex" }}
+        options={{
+          height: 90,
+          amplitude: 20,
+          speed: 0.3,
+          points: 3,
+        }}
+        className="absolute bottom-0 opacity-50"
+      />
+      <Wave
+        fill="#5B94A2"
+        paused={false}
+        style={{ display: "flex" }}
+        options={{
+          height: 100,
+          amplitude: 20,
+          speed: 0.1,
+          points: 3,
+        }}
+        className="absolute bottom-0 opacity-50"
+      />
     </div>
   );
 };
