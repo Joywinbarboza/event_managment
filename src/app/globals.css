@@ -59,3 +59,12 @@ body {
   background-size: cover;
   animation: wave 10s infinite linear;
 }
+
+@keyframes pulse {
+  0%, 100% {
+    scale: 2;
+  }
+  50% {
+    scale: 1;
+  }
+}

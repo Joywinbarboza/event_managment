@@ -1,15 +1,23 @@
+"use client"
 import React from "react";
-import WaveComponent from "../../components/LandingWave";
+import { useRouter } from "next/navigation";
 import { FaFacebook, FaInstagram, FaTwitter, FaShareAlt } from "react-icons/fa";
 import Wave from "react-wavify";
 
 const Home: React.FC = () => {
+  const router = useRouter();
+
+  const handleLoginClick = () => {
+    // Navigate to signup page
+    router.push("/pages/signup");
+  };
+
   return (
     <div
       className="mx-auto py-4 bg-cover bg-no-repeat h-screen w-screen overflow-hidden"
       style={{ backgroundImage: "url('/images/landing_page1.png')" }}
     >
-      {/*Navbar container*/}
+      {/* Navbar container */}
       <div className="flex justify-between items-center p-1 mx-4 rounded-lg">
         {/* Left Content with Social Media Icons */}
         <div className="flex items-center space-x-4">
@@ -49,17 +57,24 @@ const Home: React.FC = () => {
         <p className="font-caveat text-center text-3xl pb-5">EventX</p>
       </div>
 
-      {/*just a line*/}
+      {/* just a line */}
       <div className="h-0.5 w-full bg-white opacity-30" />
 
       <div className="flex w-full justify-center px-[10%] font-bebasNeue">
-        <span className="px-5 py-2 hover:text-yellow-500 hover:scale-110">
+        {/* Navigation Links */}
+        <span
+          className="px-5 py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer"
+          onClick={handleLoginClick}
+        >
           HOME
         </span>
         <span className="px-5 py-2 hover:text-yellow-500 hover:scale-110">
           COMBINATIONS
         </span>
-        <span className="px-5 py-2 hover:text-yellow-500 hover:scale-110">
+        <span
+          className="px-5 py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer animate-pulse"
+          onClick={handleLoginClick}
+        >
           LOGIN
         </span>
         <span className="px-5 py-2 hover:text-yellow-500 hover:scale-110">
@@ -67,8 +82,7 @@ const Home: React.FC = () => {
         </span>
       </div>
 
-      {/* <WaveComponent /> */}
-
+      {/* Waves */}
       <Wave
         fill="#f799c2"
         paused={false}
