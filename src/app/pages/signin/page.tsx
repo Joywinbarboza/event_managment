@@ -97,7 +97,7 @@ export default function Signin() {
               Sign in
             </button>
             <p className="mt-2 text-center text-sm text-gray-600">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <span
                 className="text-indigo-600 cursor-pointer hover:underline"
                 onClick={handleSignUpClick}
