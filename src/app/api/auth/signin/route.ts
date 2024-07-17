@@ -3,6 +3,7 @@ import { dbConnect } from '../../../../lib/db';
 import User from '../../../models/user.model';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+
 export async function POST(req: Request): Promise<Response> {
   try {
     console.log('Connecting to the database...');

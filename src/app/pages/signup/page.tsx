@@ -34,7 +34,7 @@ const Signup: React.FC = () => {
       console.log("Signup successful:", data);
 
       // Handle successful signup
-      router.push("/pages/home"); // Redirect to dashboard or another page after signup
+      router.push("/pages/geolocation"); // Redirect to dashboard or another page after signup
     } catch (error: any) {
       console.error("Signup error:", error);
       setError(error.message);

@@ -30,10 +30,10 @@ export default function Signin() {
       }
 
       const data = await response.json();
-      console.log("Signin successful:", data);
+      // console.log("Signin successful:", data);
 
       // Handle successful signin
-      router.push("/pages/home");
+      router.push("/pages/geolocation");
     } catch (error: any) {
       console.error("Signin error:", error);
       setError(error.message);

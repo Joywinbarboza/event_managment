@@ -60,11 +60,11 @@ body {
   animation: wave 10s infinite linear;
 }
 
-@keyframes pulse {
+/* @keyframes pulse {
   0%, 100% {
     scale: 2;
   }
   50% {
     scale: 1;
   }
-}
+} */
