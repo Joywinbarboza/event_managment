@@ -7,6 +7,12 @@ export async function GET(req: any) {
     if (req.method === "GET") {
       const cookieStore = cookies();
       const accessToken = cookieStore.get("access_token").value;
+      if (!accessToken) {
+        return NextResponse.json(
+          { message: "Access token not found in cookies" },
+          { status: 401 }
+        );
+      }
       const decodedToken: any = jwtDecode(accessToken);
       console.log(decodedToken);
       return NextResponse.json(decodedToken.id);
