@@ -61,6 +61,8 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export const config = {
-  runtime: 'experimental-edge',
-};
+// export const config = {
+//   runtime: 'experimental-edge',
+// };
+
+export const runtime = "experimental-edge";
