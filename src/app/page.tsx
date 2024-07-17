@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { FaFacebook, FaInstagram, FaTwitter, FaShareAlt } from "react-icons/fa";
@@ -7,9 +7,14 @@ import Wave from "react-wavify";
 const Home: React.FC = () => {
   const router = useRouter();
 
-  const handleLoginClick = () => {
+  const goToSignUp = () => {
     // Navigate to signup page
     router.push("/pages/signup");
+  };
+
+  const goToCollection = () => {
+    // Navigate to collection page
+    router.push("/pages/seeCollection");
   };
 
   return (
@@ -64,16 +69,19 @@ const Home: React.FC = () => {
         {/* Navigation Links */}
         <span
           className="px-5 py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer"
-          onClick={handleLoginClick}
+          onClick={goToSignUp}
         >
           HOME
         </span>
-        <span className="px-5 py-2 hover:text-yellow-500 hover:scale-110">
+        <span
+          className="px-5 py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer"
+          onClick={goToCollection}
+        >
           COMBINATIONS
         </span>
         <span
           className="px-5 py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer animate-pulse"
-          onClick={handleLoginClick}
+          onClick={goToSignUp}
         >
           LOGIN
         </span>
