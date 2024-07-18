@@ -6,7 +6,10 @@ export async function POST(req: NextRequest) {
   try {
     if (req.method === 'POST') {
       const response = NextResponse.json({ message: 'User logged out successfully' }, { status: 200 });
-      response.headers.delete('Set-Cookie');
+      
+      // Delete the access-token cookie
+      response.cookies.delete('access_token');
+      
       return response;
     } else {
       return NextResponse.json({ message: 'Method not allowed' }, { status: 405 });

@@ -3,11 +3,22 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
+// const categories = {
+//   Marriage: ["Sounds and Lighting", "Catering", "Decoration"],
+//   Birthday: ["Cakes", "Balloons", "Games"],
+//   Conference: ["Projectors", "Seating", "Refreshments"],
+// };
 const categories = {
-  Marriage: ["Sounds and Lighting", "Catering", "Decoration"],
-  Birthday: ["Cakes", "Balloons", "Games"],
-  Conference: ["Projectors", "Seating", "Refreshments"],
+  Marriage: ["Sounds and Lighting", "Catering", "Decoration", "Photographer", "Videographer", "Venue", "Florist", "Dress and Attire"],
+  Birthday: ["Cakes", "Balloons", "Games", "Party Favors", "Entertainment", "Venue", "Invitation Cards", "Photographer"],
+  Conference: ["Projectors", "Seating", "Refreshments", "Wi-Fi", "Sound System", "Stage Setup", "Registration Desk", "Name Tags"],
+  Concert: ["Stage Setup", "Sound System", "Lighting", "Security", "Merchandise", "Ticketing", "Promotion", "Backstage Passes"],
+  Festival: ["Stalls", "Live Performances", "Security", "Food Trucks", "Seating Areas", "Games", "First Aid", "Restrooms"],
+  Workshop: ["Materials and Supplies", "Instructor", "Projector", "Seating", "Refreshments", "Certificates", "Venue", "Handouts"],
+  Sports_Event: ["Referees", "Team Jerseys", "Equipment", "Medals and Trophies", "First Aid", "Security", "Seating", "Ticketing"],
+  Corporate_Party: ["Catering", "Entertainment", "Awards", "Photography", "Venue", "DJ", "Gift Bags", "Themed Decor"]
 };
+
 
 interface JwtPayload {
   user: {

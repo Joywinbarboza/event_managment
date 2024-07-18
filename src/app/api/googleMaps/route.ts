@@ -9,6 +9,8 @@ export async function GET(req: NextRequest) {
   const keyword = searchParams.get("keyword");
   const range = searchParams.get("range");
 
+  console.log(location, keyword, range);
+
   if (!location || !keyword || !range) {
     return NextResponse.json(
       { error: "Location, keyword, and range are required" },
@@ -37,16 +39,30 @@ export async function GET(req: NextRequest) {
         {
           params: {
             place_id: place.place_id,
-            fields: "name,rating,formatted_phone_number,formatted_address,price_level,photos",
+            fields:
+              "name,rating,formatted_phone_number,formatted_address,price_level,photos",
             key: GOOGLE_MAPS_API_KEY,
           },
         }
       );
 
-      const { name, rating, formatted_phone_number, formatted_address, price_level, photos } =
-        placeDetailsResponse.data.result;
+      const {
+        name,
+        rating,
+        formatted_phone_number,
+        formatted_address,
+        price_level,
+        photos,
+      } = placeDetailsResponse.data.result;
 
-      return { name, rating, phone_number: formatted_phone_number || "N/A", address: formatted_address, price_level, photos };
+      return {
+        name,
+        rating,
+        phone_number: formatted_phone_number || "N/A",
+        address: formatted_address,
+        price_level,
+        photos,
+      };
     });
 
     const results = await Promise.all(placeDetailsPromises);

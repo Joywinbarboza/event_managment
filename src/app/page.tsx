@@ -1,21 +1,55 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaFacebook, FaInstagram, FaTwitter, FaShareAlt } from "react-icons/fa";
 import Wave from "react-wavify";
+import { useUser } from "./context/UserContext";
 
 const Home: React.FC = () => {
   const router = useRouter();
+
+  // const [userId, setUserId] = useState<any>(null);
+  const { userId, setUserId } = useUser();
+
+  useEffect(() => {
+    const checkUserStatus = async () => {
+      router.refresh();
+    };
+
+    checkUserStatus();
+  }, [setUserId]);
 
   const goToSignUp = () => {
     // Navigate to signup page
     router.push("/pages/signup");
   };
 
+  const signOut = async () => {
+    try {
+      const response = await fetch("/api/auth/signout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setUserId(null);
+        router.push("/");
+      } else {
+        console.error("Failed to sign out");
+      }
+    } catch (error) {
+      console.error("Error during sign out:", error);
+    }
+  };
+
   const goToCollection = () => {
     // Navigate to collection page
     router.push("/pages/seeCollection");
   };
+
+  // router.refresh();
 
   return (
     <div
@@ -79,12 +113,21 @@ const Home: React.FC = () => {
         >
           COMBINATIONS
         </span>
-        <span
-          className="px-5 py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer animate-pulse"
-          onClick={goToSignUp}
-        >
-          LOGIN
-        </span>
+        {userId ? (
+          <span
+            className="px-5 py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer animate-pulse"
+            onClick={signOut}
+          >
+            LOGOUT
+          </span>
+        ) : (
+          <span
+            className="px-5 py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer animate-pulse"
+            onClick={goToSignUp}
+          >
+            LOGIN
+          </span>
+        )}
         <span className="px-5 py-2 hover:text-yellow-500 hover:scale-110">
           CONTACT US
         </span>
