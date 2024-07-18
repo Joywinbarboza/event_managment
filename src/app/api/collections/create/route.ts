@@ -1,4 +1,3 @@
-// pages/api/createCollection/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "../../../../lib/db";
 import GeoCollection from "../../../models/collection.model";
@@ -8,20 +7,37 @@ export async function POST(req: NextRequest) {
   try {
     const db = await dbConnect();
     const body = await req.json();
-    const { placeName, category, keyword, userId, batchId } = body; // Destructure batchId from request body
+    const { 
+      placeName, 
+      category, 
+      keyword, 
+      userId, 
+      batchId, 
+      collectionName, 
+      rating, 
+      formatted_phone_number, 
+      formatted_address, 
+      price_level 
+    } = body;
 
+    console.log(body);
     // Validate request body
-    if (!placeName || !category || !keyword || !userId || !batchId) { // Include batchId in validation
+    if (!placeName || !category || !keyword || !userId || !batchId || !collectionName) {
       return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
     }
 
-    // Create new GeoCollection
+    // Create new Collection
     const newCollection = new GeoCollection({
       userId,
       placeName,
       category,
       keyword,
-      batchId, // Include batchId in the new collection
+      batchId,
+      collectionName,
+      rating,
+      formatted_phone_number,
+      formatted_address,
+      price_level,
     });
 
     await db.collection('geocollections').insertOne(newCollection).then(() => {
