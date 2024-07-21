@@ -6,7 +6,8 @@ const UserContext = createContext(null);
 
 export function UserProvider({ children }) {
   const [userId, setUserId] = useState(null);
-
+  const [email, setEmail] = useState(null);
+  
   useEffect(() => {
     const fetchUserId = async () => {
       try {

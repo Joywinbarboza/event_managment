@@ -11,7 +11,7 @@ const Signup: React.FC = () => {
 
   const handleSignInClick = () => {
     // Navigate to signin page
-    router.push("/pages/signin");
+    router.replace("/pages/signin");
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,7 +34,7 @@ const Signup: React.FC = () => {
       console.log("Signup successful:", data);
 
       // Handle successful signup
-      router.push("/pages/geolocation"); // Redirect to dashboard or another page after signup
+      router.push("/pages/signin"); // Redirect to dashboard or another page after signup
     } catch (error: any) {
       console.error("Signup error:", error);
       setError(error.message);
@@ -42,8 +42,8 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-opacity-75 backdrop-blur-md py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-white bg-opacity-90 p-8 rounded-xl shadow-md">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Sign up for a new account

@@ -36,7 +36,8 @@ export async function GET(req: NextRequest) {
       // Return both userId and username
       return NextResponse.json({
         userId: user._id,
-        username: user.username // Assuming the username field is called 'username'
+        username: user.username, // Assuming the username field is called 'username'
+        email: user.email,
       });
     } else {
       return NextResponse.json(

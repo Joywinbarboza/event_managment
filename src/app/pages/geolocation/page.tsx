@@ -288,8 +288,15 @@ const Home = () => {
     }
   };
 
+  const goToLanding = () => {
+    router.push("/");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-indigo-200 py-12 px-4 sm:px-6 lg:px-8">
+      <button className="bg-sky-400 text-white py-3 px-6 rounded-md hover:bg-yellow-700 transition duration-300 ease-in-out" onClick={goToLanding}>
+        MAIN PAGE
+      </button>
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
           Find Places

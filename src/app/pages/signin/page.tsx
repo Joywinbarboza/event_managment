@@ -9,7 +9,7 @@ export default function Signin() {
   const [error, setError] = useState("");
 
   const handleSignUpClick = () => {
-    // Navigate to signin page
+    // Navigate to signup page
     router.push("/pages/signup");
   };
 
@@ -41,8 +41,8 @@ export default function Signin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-opacity-75 backdrop-blur-md py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-white bg-opacity-90 p-8 rounded-xl shadow-md">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Sign in to your account

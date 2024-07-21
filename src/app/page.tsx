@@ -3,13 +3,30 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaFacebook, FaInstagram, FaTwitter, FaShareAlt } from "react-icons/fa";
 import Wave from "react-wavify";
-import { useUser } from "./context/UserContext";
 
 const Home: React.FC = () => {
   const router = useRouter();
 
-  // const [userId, setUserId] = useState<any>(null);
-  const { userId, setUserId } = useUser();
+  const [userId, setUserId] = useState<any>(null);
+  // const { userId, setUserId } = useUser();
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const response = await fetch("/api/accessTokenCookie");
+        if (!response.ok) {
+          throw new Error("Failed to fetch token data");
+        }
+        const data = await response.json();
+        setUserId(data.userId);
+        console.log(data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    fetchUserId();
+  }, []);
 
   useEffect(() => {
     const checkUserStatus = async () => {
@@ -18,11 +35,6 @@ const Home: React.FC = () => {
 
     checkUserStatus();
   }, [setUserId]);
-
-  const goToSignUp = () => {
-    // Navigate to signup page
-    router.push("/pages/signup");
-  };
 
   const signOut = async () => {
     try {
@@ -49,6 +61,18 @@ const Home: React.FC = () => {
     router.push("/pages/seeCollection");
   };
 
+  const goToContact = () =>{
+    router.push("/pages/feedback");
+  }
+
+  const goToSignUp = () => {
+    // Navigate to signup page
+    router.push("/pages/signup");
+  };
+
+  const goToHome = () => {
+    router.push("/pages/home");
+  };
   // router.refresh();
 
   return (
@@ -103,7 +127,7 @@ const Home: React.FC = () => {
         {/* Navigation Links */}
         <span
           className="px-5 py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer"
-          onClick={goToSignUp}
+          onClick={goToHome}
         >
           HOME
         </span>
@@ -115,7 +139,7 @@ const Home: React.FC = () => {
         </span>
         {userId ? (
           <span
-            className="px-5 py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer animate-pulse"
+            className="px-5 py-2 hover:text-yellow-500 hover:scale-110 cursor-pointer"
             onClick={signOut}
           >
             LOGOUT
@@ -128,7 +152,10 @@ const Home: React.FC = () => {
             LOGIN
           </span>
         )}
-        <span className="px-5 py-2 hover:text-yellow-500 hover:scale-110">
+        <span
+          className="px-5 py-2 hover:text-yellow-500 hover:scale-110"
+          onClick={goToContact}
+        >
           CONTACT US
         </span>
       </div>
